@@ -18,7 +18,7 @@ def CheckCreatine():
 def CheckSum():
     if 'AVISE-ME QUANDO CHEGAR' in text_list:
         print("TÁ SEM!") #Dá um timer de alguns minutos, e verifica novamente (futuramente)
-    if 'AVISE-ME QUANDO CHEGAR' not in text_list:
+    elif 'AVISE-ME QUANDO CHEGAR' not in text_list:
         print("VEM COMPRAR PAPAI!") #Vai ser enviado um e-mail
 
 
