@@ -1,7 +1,23 @@
-#Código iniciado no dia 1 de maio | O objetivo é fazer funcionar e depois começar a realizar atividades complexas com ele
+#Código iniciado no dia 1 de maio
 
+import keys #Importando as informações de login do Twilio de um arquivo no mesmo repositório
+import os
 from requests_html import HTMLSession
+from twilio.rest import Client
 
+def SendMessage(): #Função send_message com a API do Twilio
+    client = Client(keys.account_sid, keys.auth_token)
+
+    message = client.messages \
+        .create(
+        body='Creatina está disponível! https://www.gsuplementos.com.br/creatina-250g-creapure-growth-supplements-p985824',
+        from_=keys.twilio_number,
+        status_callback='https://abc1234.free.beeceptor.com',
+        to=keys.target_number
+    )
+
+    print(message.sid)
+    
 def CheckCreatine():
     global text_list #Definindo uma váriavel global pra eu poder usar ela fora de função (vai virar uma array)
 
@@ -15,12 +31,13 @@ def CheckCreatine():
     text = comp.text  # Retorna o texto do elemento que vc marcou
     text_list = [text] #Coloca o resultado do texto numa lista
 
-def CheckSum():
-    if 'AVISE-ME QUANDO CHEGAR' in text_list:
-        print("TÁ SEM!") #Dá um timer de alguns minutos, e verifica novamente (futuramente)
-    elif 'AVISE-ME QUANDO CHEGAR' not in text_list:
-        print("VEM COMPRAR PAPAI!") #Vai ser enviado um e-mail
+
+CheckCreatine() #Roda a função para verificar a disponibilidade
 
 
-CheckCreatine()
-CheckSum()
+if 'AVISE-ME QUANDO CHEGAR' in text_list: #Se um dos dados parseados estiver dessa maneira, não tem disponível
+    print("TÁ SEM!")
+    exit(0)
+elif 'AVISE-ME QUANDO CHEGAR' not in text_list: #Caso contrário, aparece 'comprar', então pode enviar o e-mail
+    SendMessage() #Função que envia o sms
+
