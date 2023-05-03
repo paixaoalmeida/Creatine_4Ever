@@ -3,6 +3,8 @@ A program to monitor the availability of creatine in a famous website in Brazil,
 
 # Requirements for using this program.
 
+- Libs: request_html, twilio and os
+
 - U should have a twilio account (we use it to send the messages) and get your credentials
 
 - Once u did this, u will create a "key" fill the key.py file at the same directory with ur credentiais, just like this:
