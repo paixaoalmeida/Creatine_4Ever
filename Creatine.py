@@ -1,6 +1,6 @@
 #Código iniciado no dia 1 de maio
 import time
-import Selenium_buy #importando o arquivo do selenium que realiza a compra
+#import Selenium_buy #importando o arquivo do selenium que realiza a compra
 import keys #Importando as informações de login do Twilio de um arquivo no mesmo repositório
 import os
 from requests_html import HTMLSession
@@ -29,7 +29,7 @@ while big_loop:
         session = HTMLSession()  # Objeto com a função da lib
         r = session.get('https://www.gsuplementos.com.br/creatina-250g-creapure-growth-supplements-p985824')
 
-        r.html.render(sleep=3)  # Renderiza o JavaScript da página
+        r.html.render(sleep=5)  # Renderiza o JavaScript da página
 
         comp = r.html.find('.botao-de-compra > div:nth-child(1) > a:nth-child(1) > button:nth-child(1)',first=True)  # A primeira que achar, vai te dar, caso contrário, vai dar uma lista e vai dar erro
 
@@ -44,7 +44,7 @@ while big_loop:
         if 'AVISE-ME QUANDO CHEGAR' in text_list: #Se um dos dados parseados estiver dessa maneira, não tem disponível
             print("NÃO DISPONÍVEL! " + str(datetime.now())) #Printa o horário para fins de registro
             time.sleep(120) #Como é um código para monitoramento, se o produto não estiver disponível, aguarda um pouco e volta tudo novamente
-            break
+            CheckCreatine() #Volta a função para verificar a disponibilidade
         elif 'AVISE-ME QUANDO CHEGAR' not in text_list: #Caso contrário, aparece 'comprar', então pode enviar o e-mail
             SendMessage() #Função que envia o sms
             big_loop = False
