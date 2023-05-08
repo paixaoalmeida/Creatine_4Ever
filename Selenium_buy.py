@@ -10,9 +10,11 @@ service = FirefoxService(executable_path=GeckoDriverManager().install()) #Instal
 
 driver = webdriver.Firefox(service=service) #criando o objeto
 
-driver.get("https://www.gsuplementos.com.br/creatina-monohidratada-250gr-growth-supplements-p985931")
+driver.get("https://www.gsuplementos.com.br/creatina-250g-creapure-growth-supplements-p985824")
 
 time.sleep(10)
+
+driver.maximize_window #maximixe windows
 
 elem = driver.find_element('xpath' , '//*[@id="wCookieConsentBar-acceptAll"]')
 
@@ -60,14 +62,16 @@ go_payment = driver.find_element('xpath', '/html/body/main/section[2]/div/div[1]
 
 time.sleep(5)
 
-pix = driver.find_element('css selector', 'div.mainBox-conteudo-formasPag-opcao:nth-child(3) > div:nth-child(2)')
+pix = driver.find_element('css selector', 'div.mainBox-conteudo-formasPag-opcao:nth-child(3)')
+
+pix.click()
 
 time.sleep(5)
 
-pix.click
+#end_purchase = driver.find_element('css selector', '#formPagamentoPix > div:nth-child(6) > button:nth-child(1)')
 
-time.sleep(5)
+#end_purchase.click
+element = driver.find_element('css selector', '#formPagamentoPix > div:nth-child(6) > button:nth-child(1)')
+driver.execute_script("$(arguments[0]).click();", element) #Use some java to click the element
 
-end_purchase = driver.find_element('xpath', '//*[@id="finalizarPedido"]').send_keys(Keys.ENTER)
 
-#5 de maio
