@@ -1,6 +1,7 @@
 #Código iniciado no dia 1 de maio
+#LIBRARIES------------------------------------------LIBRARIES-------------------------------LIBRARIES
 import time
-#import Selenium_buy #importando o arquivo do selenium que realiza a compra
+import Selenium_buy as Robot_buy #importando o arquivo do selenium que realiza a compra
 import keys #Importando as informações de login do Twilio de um arquivo no mesmo repositório
 import os
 from requests_html import HTMLSession
@@ -8,12 +9,13 @@ from twilio.rest import Client
 from datetime import datetime
 from time import sleep
 
+#FUNÇÕES---------------------------------------FUNÇÕES------------------------------------------FUNÇÕES
 def SendMessage(): #Função send_email com a API do Twilio
     client = Client(keys.account_sid, keys.auth_token)
 
     message = client.messages \
         .create(
-        body='Creatina está disponível! https://www.gsuplementos.com.br/creatina-250g-creapure-growth-supplements-p985824',
+        body='Creatina Creapure está disponível! Estamos comprando pra você, se não deu certo, compre manualmente no link: https://www.gsuplementos.com.br/creatina-250g-creapure-growth-supplements-p985824',
         from_=keys.twilio_number,
         status_callback='https://abc1234.free.beeceptor.com',
         to=keys.target_number
@@ -21,6 +23,12 @@ def SendMessage(): #Função send_email com a API do Twilio
 
     print(message.sid)
 
+def BuyS():
+    print("Efetuando a compra da Creatina em " + str(datetime) + "....")
+    Robot_buy.BuyCreatine
+
+
+#CÓDIGO--------------------------------------CÓDIGO-------------------------------------CÓDIGO------
 big_loop = True
 while big_loop:
     def CheckCreatine():
@@ -46,6 +54,6 @@ while big_loop:
             time.sleep(120) #Como é um código para monitoramento, se o produto não estiver disponível, aguarda um pouco e volta tudo novamente
             CheckCreatine() #Volta a função para verificar a disponibilidade
         elif 'AVISE-ME QUANDO CHEGAR' not in text_list: #Caso contrário, aparece 'comprar', então pode enviar o e-mail
-            SendMessage() #Função que envia o sms
+            SendMessage() and BuyS #Função que envia o sms
             big_loop = False
             exit(0)
