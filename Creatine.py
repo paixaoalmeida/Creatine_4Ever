@@ -23,15 +23,7 @@ def SendMessage(): #Função send_email com a API do Twilio
 
     print(message.sid)
 
-def BuyS():
-    print("Efetuando a compra da Creatina em " + str(datetime) + "....")
-    Robot_buy.BuyCreatine
-
-
-#CÓDIGO--------------------------------------CÓDIGO-------------------------------------CÓDIGO------
-big_loop = True
-while big_loop:
-    def CheckCreatine():
+def CheckCreatine():
         global text_list #Definindo uma váriavel global pra eu poder usar ela fora de função (vai virar uma array)
 
         session = HTMLSession()  # Objeto com a função da lib
@@ -44,16 +36,25 @@ while big_loop:
         text = comp.text  # Retorna o texto do elemento que vc marcou
         text_list = [text] #Coloca o resultado do texto numa lista
 
+def BuyS():
+    print("Efetuando a compra da Creatina em " + str(datetime) + "....")
+    Robot_buy.BuyCreatine
 
-    CheckCreatine() #Roda a função para verificar a disponibilidade
 
-    loop = True #Variável para usar como uma flag no loop
-    while loop:
-        if 'AVISE-ME QUANDO CHEGAR' in text_list: #Se um dos dados parseados estiver dessa maneira, não tem disponível
-            print("NÃO DISPONÍVEL! " + str(datetime.now())) #Printa o horário para fins de registro
-            time.sleep(120) #Como é um código para monitoramento, se o produto não estiver disponível, aguarda um pouco e volta tudo novamente
-            CheckCreatine() #Volta a função para verificar a disponibilidade
-        elif 'AVISE-ME QUANDO CHEGAR' not in text_list: #Caso contrário, aparece 'comprar', então pode enviar o e-mail
-            SendMessage() and BuyS #Função que envia o sms
-            big_loop = False
-            exit(0)
+#CÓDIGO--------------------------------------CÓDIGO-------------------------------------CÓDIGO------
+if __name__ == "__main__":
+    big_loop = True
+    while big_loop:
+        CheckCreatine() #Roda a função para verificar a disponibilidade
+
+
+        loop = True #Variável para usar como uma flag no loop
+        while loop:
+            if 'AVISE-ME QUANDO CHEGAR' in text_list: #Se um dos dados parseados estiver dessa maneira, não tem disponível
+                print("NÃO DISPONÍVEL! " + str(datetime.now())) #Printa o horário para fins de registro
+                time.sleep(120) #Como é um código para monitoramento, se o produto não estiver disponível, aguarda um pouco e volta tudo novamente
+                CheckCreatine() #Volta a função para verificar a disponibilidade
+            elif 'AVISE-ME QUANDO CHEGAR' not in text_list: #Caso contrário, aparece 'comprar', então pode enviar o e-mail
+                SendMessage() and BuyS #Função que envia o sms
+                big_loop = False
+                exit(0)
