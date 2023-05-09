@@ -3,7 +3,7 @@ A program to monitor the availability of creatine in a famous website in Brazil,
 
 # Requirements for using this program.
 
-- Libs: request_html, twilio and os
+- Libs: request_html, twilio, os(it comes by default with Python) and Selenium
 
 - U should have a twilio account (we use it to send the messages) and get your credentials
 
@@ -17,6 +17,11 @@ A program to monitor the availability of creatine in a famous website in Brazil,
 
 - This file is gonna be imported into the code and everything is gonna be fine.
 
-- I will try to find a easier way to send the messages, but for now, Twilio is free and a really good service.
+Another important stuff is to fill out the file "passwd.py" with all the information it needs:
 
-*Next Update: make the bot buy stuff and send the receipt with the message*
+# growth_email = 'SEU_EMAIL'
+# growth_passwd = 'SUA_SENHA'
+# seu_cep = 'SEU_CEP'
+# cupom_desconto = 'GIGA'
+
+-After this, just check out if u have everything that needed ir order for the program to run,and u are good to go.
