@@ -1,0 +1,4 @@
+requests_html=='0.10.0'
+pyperclip=='1.8.2'
+pyautogui=='0.9.54'
+pywhatkit=='5.4'
