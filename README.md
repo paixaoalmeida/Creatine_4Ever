@@ -1,15 +1,35 @@
 # Creatine_4Ever
 A program to monitor the availability of creatine in a famous website in Brazil, this way you will never miss it, never ever!
 
-# Requirements for using this program.
+<div>
+  <h1>Requirements for using this program.</h1>
+</div>
+    
+<div>
+   <h2>Libs</h2>
+      <ul>
+      <li>request_html</li>
+      <li>os(it comes by default with Python)</li> 
+      <li>PyautoGUI and pyperclip</li>
+      <li>Pywhatkit</li>
+      </ul>
 
-- Libs: request_html, twilio, os(it comes by default with Python), PyautoGUI and pyperclip
+      Install everything just typing --> pip install -r requirements.txt
+</div>
 
-Another important stuff is to fill out the file "passwd.py" with all the information it needs:
+<h2>Fill out the file "passwd.py" with your private info:</h2>
 
-# growth_email = 'SEU_EMAIL'
-# growth_passwd = 'SUA_SENHA'
-# cep = 'SEU_CEP'
-# cupom = 'GIGA'
 
--After this, just check out if u have everything that needed ir order for the program to run,and u are good to go.
+<div>
+  <ul>
+    <li>growth_email = 'SEU_EMAIL'</li>
+    <li>growth_passwd = 'SUA_SENHA'</li>
+    <li>cep = 'SEU_CEP'</li>
+    <li>cupom = 'GIGA'</li>
+  </ul>
+</div>
+
+
+<div>
+  <p><b>Just run the Creatine.py file when you need it</b></p>
+</div>
